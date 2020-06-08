@@ -50,3 +50,4 @@ def execute_read_query(conn, query):
     return result
 
 # TODO: add utility functions for extracting specific data from read_query (rather than tuples/lists)
+# TODO: prevent SQL injection attacks
