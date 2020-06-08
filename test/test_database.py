@@ -2,7 +2,8 @@ import unittest
 from src.database import *
 
 
-class MyTestCase(unittest.TestCase):
+class SQLiteTestCases(unittest.TestCase):
+
     def test_connect(self):
         self.assertNotEqual(None, connect(':memory:'))
 
@@ -19,18 +20,18 @@ class MyTestCase(unittest.TestCase):
         execute_query(conn, create)
 
         data = """
-        INSERT INTO
-            testing (name, description, priority)
-        VALUES
-            ('eat', 'like with food', 1),
-            ('don't eat', 'maybe go outside', 3);
-        """
+                INSERT INTO
+                    testing (name, description, priority)
+                VALUES
+                    ('eat', 'like with food', 1),
+                    ('dont eat', 'maybe go outside', 3);
+                """
         execute_query(conn, data)
 
         select = """
-        SELECT name WHERE id=1
+        SELECT name FROM testing WHERE id=1
         """
-        a = execute_read_query(conn, select)
+        a = execute_read_query(conn, select)[0][0]
 
         self.assertEqual(a, 'eat')
 

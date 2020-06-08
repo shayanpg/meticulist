@@ -48,3 +48,5 @@ def execute_read_query(conn, query):
     except Error as e:
         print(f"Error: '{e}'")
     return result
+
+# TODO: add utility functions for extracting specific data from read_query (rather than tuples/lists)
